@@ -1,3 +1,5 @@
+import EmberObject from '@ember/object';
+
 /**
   @module @ember-data/store
 */
@@ -12,12 +14,6 @@
 
   The type belows allows for either a class instance, or an object, but not primitive values or functions.
 */
-type Primitive = string | number | boolean | null;
-interface Object {
-  [member: string]: Value | undefined | ((...args: any[]) => any);
-}
-interface Arr extends Array<Object | Arr | undefined> {}
 
-type Value = Primitive | Object | Arr;
-
+// TODO Rename to RecordInstance
 export type Record = Object;

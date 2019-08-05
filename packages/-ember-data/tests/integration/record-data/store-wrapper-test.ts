@@ -137,7 +137,7 @@ module('integration/store-wrapper - RecordData StoreWrapper tests', function (ho
           }
         };
 
-        assert.deepEqual(storeWrapper.attributesDefinitionFor('house'), houseAttrs, 'can lookup attribute definitons for self');
+        assert.deepEqual(storeWrapper.attributesDefinitionFor('house'), houseAttrs, 'can lookup attribute definitions for self');
 
         let carAttrs = {
           make: {
@@ -149,7 +149,7 @@ module('integration/store-wrapper - RecordData StoreWrapper tests', function (ho
           }
         }
 
-        assert.deepEqual(storeWrapper.attributesDefinitionFor('car'), carAttrs, 'can lookup attribute definitons for other models');
+        assert.deepEqual(storeWrapper.attributesDefinitionFor('car'), carAttrs, 'can lookup attribute definitions for other models');
 
         let houseRelationships = {
           landlord: {
