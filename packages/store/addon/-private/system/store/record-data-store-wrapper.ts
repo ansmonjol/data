@@ -130,7 +130,7 @@ export default class RecordDataStoreWrapper implements IRecordDataStoreWrapper {
     const definition = upgradeForInternal(this.relationshipsDefinitionFor(modelName)[key]);
     if (CUSTOM_MODEL_CLASS) {
       if (definition.inverse === null) {
-        return true;
+        return false;
       }
       if (definition.inverseIsAsync !== undefined) {
         return !!definition.inverseIsAsync;

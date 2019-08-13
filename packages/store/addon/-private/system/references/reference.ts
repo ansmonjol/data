@@ -27,11 +27,7 @@ function isResourceIdentiferWithRelatedLinks(value: any): value is ResourceIdent
  */
 export default abstract class Reference {
   public recordData: InternalModel['_recordData'];
-  constructor(
-    // TODO: shouldn't have to instance<factory of instance>
-    public store: CoreStore,
-    public internalModel: InternalModel
-  ) {
+  constructor(public store: CoreStore, public internalModel: InternalModel) {
     this.recordData = recordDataFor(this);
   }
 
