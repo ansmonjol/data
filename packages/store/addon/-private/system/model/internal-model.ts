@@ -532,7 +532,7 @@ export default class InternalModel {
       // Casting to narrow due to the feature flag paths inside scheduleSave
       return this.store.scheduleSave(this, resolver, options) as RSVP.Promise<void>;
     } else {
-      this.store.scheduleSave(this, resolver, options) as void;
+      this.store.scheduleSave(this, resolver, options);
       return resolver.promise;
     }
   }
@@ -1098,7 +1098,7 @@ export default class InternalModel {
     return currentState[name](this, context);
   }
 
-  manyArrayRecordAdded(key) {
+  manyArrayRecordAdded(key: string) {
     if (this.hasRecord) {
       if (CUSTOM_MODEL_CLASS) {
         this.store._notificationManager.notify(this.identifier, 'relationships');
