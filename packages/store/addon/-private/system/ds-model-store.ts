@@ -24,6 +24,7 @@ import RecordDataRecordWrapper from '../ts-interfaces/record-data-record-wrapper
 import { relationshipFromMeta } from './relationship-meta';
 import { cacheFor } from '@ember/object/internals';
 import { SchemaDefinitionService } from '../ts-interfaces/schema-definition-service';
+import { RelationshipsSchema } from '../ts-interfaces/record-data-schemas';
 
 // Implementors Note:
 //
@@ -284,7 +285,7 @@ class Store extends CoreStore {
     }
   }
 
-  _relationshipMetaFor(modelName, id, key) {
+  _relationshipMetaFor(modelName: string, id: string | null, key: string) {
     if (CUSTOM_MODEL_CLASS) {
       return this._relationshipsDefinitionFor(modelName)[key];
     } else {
@@ -294,7 +295,7 @@ class Store extends CoreStore {
     }
   }
 
-  _attributesDefinitionFor(modelName) {
+  _attributesDefinitionFor(modelName: string) {
     if (CUSTOM_MODEL_CLASS) {
       return this.getSchemaDefinitionService().attributesDefinitionFor(modelName);
     } else {
@@ -313,7 +314,7 @@ class Store extends CoreStore {
     }
   }
 
-  _relationshipsDefinitionFor(modelName) {
+  _relationshipsDefinitionFor(modelName: string): RelationshipsSchema {
     if (CUSTOM_MODEL_CLASS) {
       return this.getSchemaDefinitionService().relationshipsDefinitionFor(modelName);
     } else {

@@ -419,15 +419,15 @@ abstract class CoreStore extends Service {
 
   abstract instantiateRecord(
     identifier: StableRecordIdentifier,
-    createRecordArgs: { [key: string]: any }, // args passed in to store.createRecord() and processed by recordData to be set on creation
-    recordDataFor: (identifier: StableRecordIdentifier) => RecordDataRecordWrapper,
+    createRecordArgs: { [key: string]: unknown }, // args passed in to store.createRecord() and processed by recordData to be set on creation
+    recordDataFor: (identifier: RecordIdentifier) => RecordDataRecordWrapper,
     notificationManager: NotificationManager
   ): Record;
 
-  abstract teardownRecord(record): void;
+  abstract teardownRecord(record: Record): void;
 
-  _internalDeleteRecord(internalModel) {
-    return internalModel.deleteRecord();
+  _internalDeleteRecord(internalModel: InternalModel) {
+    internalModel.deleteRecord();
   }
 
   // FeatureFlagged in the DSModelStore claas

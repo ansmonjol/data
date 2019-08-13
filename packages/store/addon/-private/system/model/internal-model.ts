@@ -480,8 +480,11 @@ export default class InternalModel {
     this._doNotDestroy = false;
 
     if (this._record) {
-      this.store.teardownRecord(this._record);
-      //this._record.destroy();
+      if (CUSTOM_MODEL_CLASS) {
+        this.store.teardownRecord(this._record);
+      } else {
+        this._record.destroy();
+      }
 
       Object.keys(this._relationshipProxyCache).forEach(key => {
         if (this._relationshipProxyCache[key].destroy) {

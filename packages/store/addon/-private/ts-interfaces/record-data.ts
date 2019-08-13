@@ -50,7 +50,7 @@ export default interface RecordData {
   hasAttr(key: string): boolean;
 
   isRecordInUse(): boolean;
-  _initRecordCreateOptions(options: any): object;
+  _initRecordCreateOptions(options: any): { [key: string]: unknown };
 
   // new
   getErrors?(recordIdentifier: RecordIdentifier): JsonApiValidationError[];
