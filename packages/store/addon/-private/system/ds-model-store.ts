@@ -114,7 +114,7 @@ import { SchemaDefinitionService } from '../ts-interfaces/schema-definition-serv
   @extends Ember.Service
 */
 function notifyChanges(
-  identifier: RecordIdentifier,
+  identifier: StableRecordIdentifier,
   value: 'attributes' | 'relationships' | 'errors' | 'meta' | 'unload' | 'identity' | 'property' | 'state',
   record: DSModel,
   store: Store
@@ -162,7 +162,7 @@ class Store extends CoreStore {
   private _attributesDefCache = Object.create(null);
 
   instantiateRecord(
-    identifier: RecordIdentifier,
+    identifier: StableRecordIdentifier,
     createRecordArgs: { [key: string]: any },
     recordDataFor: (identifier: StableRecordIdentifier) => RecordDataRecordWrapper,
     notificationManager: NotificationManager

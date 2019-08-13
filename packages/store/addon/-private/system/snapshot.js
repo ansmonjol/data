@@ -141,6 +141,9 @@ export default class Snapshot {
   }
 
   get isNew() {
+    if (!CUSTOM_MODEL_CLASS) {
+      throw 'isNew is only available when custom model class ff is on';
+    }
     return this._internalModel.isNew();
   }
   /**

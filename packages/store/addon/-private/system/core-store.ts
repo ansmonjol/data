@@ -57,7 +57,7 @@ import { identifierCacheFor, IdentifierCache } from '../identifiers/cache';
 import { internalModelFactoryFor, setRecordIdentifier, recordIdentifierFor } from './store/internal-model-factory';
 import { RecordIdentifier, StableRecordIdentifier } from '../ts-interfaces/identifier';
 import RecordData from '../ts-interfaces/record-data';
-import { RecordReference } from './references';
+import { RecordReference, HasManyReference, BelongsToReference } from './references';
 import { Backburner } from '@ember/runloop/-private/backburner';
 import Snapshot from './snapshot';
 import Relationship from './relationships/state/relationship';
@@ -3001,7 +3001,7 @@ abstract class CoreStore extends Service {
     }
   }
 
-  relationshipReferenceFor(identifier: RecordIdentifier, key: string): Reference {
+  relationshipReferenceFor(identifier: RecordIdentifier, key: string): BelongsToReference | HasManyReference {
     if (CUSTOM_MODEL_CLASS) {
       let internalModel = internalModelFactoryFor(this).peek(identifier.type, identifier.id, identifier.lid);
       // TODO we used to check if the record was destroyed here

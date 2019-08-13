@@ -8,7 +8,7 @@ const Tokens = new WeakMap<UnsubscribeToken, StableRecordIdentifier>();
 
 interface NotificationCallback {
   (
-    identifier: RecordIdentifier,
+    identifier: StableRecordIdentifier,
     notificationType: 'attributes' | 'relationships' | 'identity' | 'errors' | 'meta' | 'unload' | 'property' | 'state'
   ): void;
 }
