@@ -1,5 +1,3 @@
-import EmberObject from '@ember/object';
-
 /**
   @module @ember-data/store
 */
