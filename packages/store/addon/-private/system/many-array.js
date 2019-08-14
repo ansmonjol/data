@@ -148,7 +148,6 @@ export default EmberObject.extend(MutableArray, DeprecatedEvent, {
   },
 
   removeUnloadedInternalModel() {
-    debugger;
     for (let i = 0; i < this.currentState.length; ++i) {
       let internalModel = this.currentState[i];
       let shouldRemove;
