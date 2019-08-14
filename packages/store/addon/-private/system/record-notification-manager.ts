@@ -16,7 +16,7 @@ interface NotificationCallback {
 export function unsubscribe(token: UnsubscribeToken) {
   let identifier = Tokens.get(token);
   if (!identifier) {
-    throw 'Passed unknown unsubscribe token to unsubscribe';
+    throw new Error('Passed unknown unsubscribe token to unsubscribe');
   }
   Cache.delete(identifier);
 }

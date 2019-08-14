@@ -342,7 +342,7 @@ abstract class CoreStore extends Service {
     if (REQUEST_SERVICE) {
       return this._fetchManager.requestCache;
     }
-    throw 'RequestService is not available unless the feature flag is on and running on a canary build';
+    throw new Error('RequestService is not available unless the feature flag is on and running on a canary build');
   }
 
   get identifierCache(): IdentifierCache {
@@ -413,7 +413,7 @@ abstract class CoreStore extends Service {
       //recordToInternalModelMap.set(record, internalModel);
       return record;
     } else {
-      throw 'should not be here, custom model class ff error';
+      throw new Error('should not be here, custom model class ff error');
     }
   }
 
@@ -447,7 +447,7 @@ abstract class CoreStore extends Service {
     if (CUSTOM_MODEL_CLASS) {
       return this._schemaDefinitionService;
     } else {
-      throw 'need to enable CUSTOM_MODEL_CLASS feature flag in order to access SchemaDefinitionService';
+      throw new Error('need to enable CUSTOM_MODEL_CLASS feature flag in order to access SchemaDefinitionService');
     }
   }
 
@@ -2985,7 +2985,7 @@ abstract class CoreStore extends Service {
       // TODO we used to check if the record was destroyed here
       return internalModel!.createSnapshot(options).serialize(options);
     } else {
-      throw 'serializeRecord is only available when CUSTOM_MODEL_CLASS ff is on';
+      throw new Error('serializeRecord is only available when CUSTOM_MODEL_CLASS ff is on');
     }
   }
 
@@ -2997,7 +2997,7 @@ abstract class CoreStore extends Service {
       // Casting can be removed once REQUEST_SERVICE ff is turned on
       return (internalModel!.save(options) as RSVP.Promise<void>).then(() => record);
     } else {
-      throw 'saveRecord is only available when CUSTOM_MODEL_CLASS ff is on';
+      throw new Error('saveRecord is only available when CUSTOM_MODEL_CLASS ff is on');
     }
   }
 
@@ -3007,7 +3007,7 @@ abstract class CoreStore extends Service {
       // TODO we used to check if the record was destroyed here
       return internalModel!.referenceFor(null, key);
     } else {
-      throw 'relationshipReferenceFor is only available when CUSTOM_MODEL_CLASS ff is on';
+      throw new Error('relationshipReferenceFor is only available when CUSTOM_MODEL_CLASS ff is on');
     }
   }
 
