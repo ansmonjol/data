@@ -148,13 +148,14 @@ export default EmberObject.extend(MutableArray, DeprecatedEvent, {
   },
 
   removeUnloadedInternalModel() {
+    debugger;
     for (let i = 0; i < this.currentState.length; ++i) {
       let internalModel = this.currentState[i];
       let shouldRemove;
       if (CUSTOM_MODEL_CLASS) {
         shouldRemove = internalModel._isDematerializing;
       } else {
-        shouldRemove = internalModel._isDematerializing || internalModel.isLoaded();
+        shouldRemove = internalModel._isDematerializing || !internalModel.isLoaded();
       }
       if (shouldRemove) {
         this.arrayContentWillChange(i, 1, 0);
