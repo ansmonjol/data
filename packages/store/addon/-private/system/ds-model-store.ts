@@ -2,12 +2,13 @@
   @module ember-data
 */
 import CoreStore from './core-store';
-import { assert, deprecate, warn, inspect } from '@ember/debug';
+import { assert, warn, inspect } from '@ember/debug';
 import normalizeModelName from './normalize-model-name';
 import { assign } from '@ember/polyfills';
 import RecordDataDefault from './model/record-data';
 import { DEBUG } from '@glimmer/env';
 import { typeOf, isPresent, isNone } from '@ember/utils';
+import { deprecate } from '@ember/application/deprecations';
 import EmberError from '@ember/error';
 import { set, get, computed } from '@ember/object';
 import ShimModelClass from './model/shim-model-class';
