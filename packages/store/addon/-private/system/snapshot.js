@@ -5,7 +5,7 @@ import { inspect } from '@ember/debug';
 import EmberError from '@ember/error';
 import { get } from '@ember/object';
 import { assign } from '@ember/polyfills';
-import { relationshipStateFor } from './record-data-for';
+import recordDataFor, { relationshipStateFor } from './record-data-for';
 import { CUSTOM_MODEL_CLASS } from '@ember-data/canary-features';
 
 /**
@@ -24,7 +24,6 @@ export default class Snapshot {
     let internalModel = (this._internalModel = store._internalModelForResource(identifier));
     this._store = store;
     this.modelName = identifier.type;
-    //this._recordData = store.recordDataForIdentifier(identifier);
 
     /*
       If the internalModel does not yet have a record, then we are
@@ -69,7 +68,7 @@ export default class Snapshot {
     this.modelName = internalModel.modelName;
 
     if (internalModel.hasRecord) {
-      this._changedAttributes = internalModel._recordData.changedAttributes();
+      this._changedAttributes = recordDataFor(internalModel).changedAttributes();
     }
   }
 
@@ -102,7 +101,7 @@ export default class Snapshot {
           if (this.type.isModel) {
             attributes[keyName] = get(record, keyName);
           } else {
-            attributes[keyName] = this._internalModel._recordData.getAttr(keyName);
+            attributes[keyName] = recordDataFor(this._internalModel).getAttr(keyName);
           }
         });
       } else {
