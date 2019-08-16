@@ -180,12 +180,8 @@ class Store extends CoreStore {
     };
     assign(createOptions, createRecordArgs);
 
-    if (setOwner) {
-      // ensure that `getOwner(this)` works inside a model instance
-      setOwner(createOptions, getOwner(this));
-    } else {
-      //createOptions.container = this.container;
-    }
+    // ensure that `getOwner(this)` works inside a model instance
+    setOwner(createOptions, getOwner(this));
 
     delete createOptions.container;
     let record = this._modelFactoryFor(modelName).create(createOptions);

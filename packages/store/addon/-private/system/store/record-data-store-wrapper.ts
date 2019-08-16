@@ -64,7 +64,6 @@ export default class RecordDataStoreWrapper implements IRecordDataStoreWrapper {
     backburner.join(() => {
       backburner.schedule('syncRelationships', this, this._flushPendingManyArrayUpdates);
     });
-    //}
   }
 
   notifyErrorsChange(modelName: string, id: string, clientId: string | null): void;
