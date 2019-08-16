@@ -106,26 +106,12 @@ export default class Snapshot {
           }
         });
       } else {
-        attrs.forEach(keyName => (attributes[keyName] = get(record, keyName)));
+        record.eachAttribute(keyName => (attributes[keyName] = get(record, keyName)));
       }
     }
 
     return attributes;
   }
-  /*
-  get _attributes() {
-    let attributes = this.__attributes;
-
-    if (attributes === null) {
-      let record = this.record;
-      attributes = this.__attributes = Object.create(null);
-
-      record.eachAttribute(keyName => (attributes[keyName] = get(record, keyName)));
-    }
-
-    return attributes;
-  }
-  */
 
   /**
    The type of the underlying record for this snapshot, as a Model.
@@ -391,16 +377,15 @@ export default class Snapshot {
     @param {Function} callback the callback to execute
     @param {Object} [binding] the value to which the callback's `this` should be bound
   */
-  /*
   eachAttribute(callback, binding) {
-    this.record.eachAttribute(callback, binding);
-  }
-  */
-  eachAttribute(callback, binding) {
-    let attrDefs = this._store._attributesDefinitionFor(this.modelName, this.id);
-    Object.keys(attrDefs).forEach(key => {
-      callback.call(binding, key, attrDefs[key]);
-    });
+    if (CUSTOM_MODEL_CLASS) {
+      let attrDefs = this._store._attributesDefinitionFor(this.modelName, this.id);
+      Object.keys(attrDefs).forEach(key => {
+        callback.call(binding, key, attrDefs[key]);
+      });
+    } else {
+      this.record.eachAttribute(callback, binding);
+    }
   }
 
   /**
@@ -419,16 +404,15 @@ export default class Snapshot {
     @param {Function} callback the callback to execute
     @param {Object} [binding] the value to which the callback's `this` should be bound
   */
-  /*
   eachRelationship(callback, binding) {
-    this.record.eachRelationship(callback, binding);
-  }
-  */
-  eachRelationship(callback, binding) {
-    let relationshipDefs = this._store._relationshipsDefinitionFor(this.modelName, this.id);
-    Object.keys(relationshipDefs).forEach(key => {
-      callback.call(binding, key, relationshipDefs[key]);
-    });
+    if (CUSTOM_MODEL_CLASS) {
+      let relationshipDefs = this._store._relationshipsDefinitionFor(this.modelName, this.id);
+      Object.keys(relationshipDefs).forEach(key => {
+        callback.call(binding, key, relationshipDefs[key]);
+      });
+    } else {
+      this.record.eachRelationship(callback, binding);
+    }
   }
 
   /**
